@@ -6,6 +6,7 @@ from farmware_tools import device, get_config_value, app
 #Find arm position at start of program
 start_arm_x = device.get_current_position('x')
 start_arm_y = device.get_current_position('y')
+start_arm_z = device.get_current_position('z')
 
 # Load inputs from Farmware page widget specified in manifest file. X axis is length, Y axis is width.
 pos_x = get_config_value('Seeding Path', 'start_x')
@@ -35,11 +36,12 @@ def moveAbs(x, y, z):
     )
 
 #Rertract to safe Z and move to first hole
-moveAbs(start_arm_x, start_arm_y, safeZ)
-moveAbs(pos_x, pos_y, safeZ)
-moveAbs(pos_x, pos_y, pos_z)
+if start_arm_z < safeZ:
+	moveAbs(start_arm_x, start_arm_y, safeZ)
+	moveAbs(pos_x, pos_y, safeZ)
+	moveAbs(pos_x, pos_y, pos_z)
 
-
+#Move from hole to hole
 sense = 1
 for i in range(cellCountX):
 	plant_x = plantWidth*i+pos_x
