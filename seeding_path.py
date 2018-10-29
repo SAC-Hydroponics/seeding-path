@@ -53,10 +53,10 @@ for i in range(cellCountX):
 		for j in range(0,cellCountY+1,1):
 			plant_y = plantLength*j+pos_y
 			#print('cords',x,y)
-			moveAbs(plant_x, plant_y, pos_z+plantRetract)
+			moveAbs(plant_x, plant_y, pos_z+plantingRetract)
 			moveAbs(plant_x, plant_y, pos_z)
 			#new_plant = app.add_plant(x = x,y = y)
-			moveAbs(plant_x, plant_y, pos_z+plantRetract)
+			moveAbs(plant_x, plant_y, pos_z+plantingRetract)
 		sense = 0
 	else:
 		for j in range(cellCountY,-1,-1):
