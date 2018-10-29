@@ -36,7 +36,10 @@ def moveAbs(x, y, z):
     )
 
 #Rertract to safe Z and move to first hole
-if start_arm_z < safeZ:
+if start_arm_z > safeZ:
+	moveAbs(pos_x, pos_y, start_arm_z)
+	moveAbs(pos_x, pos_y, pos_z)
+else:
 	moveAbs(start_arm_x, start_arm_y, safeZ)
 	moveAbs(pos_x, pos_y, safeZ)
 	moveAbs(pos_x, pos_y, pos_z)
