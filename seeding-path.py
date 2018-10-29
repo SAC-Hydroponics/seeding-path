@@ -5,11 +5,14 @@ from farmware_tools import device, get_config_value, app
 
 #so far only path of seeding starting at
 # Load inputs from Farmware page widget specified in manifest file
-pos_x = get_current_position('Seeding Path', 'start_x')
-pos_y = get_current_position('Seeding Path', 'start_y')
-pos_z = get_current_position('Seeding Path', 'start_z')#later
-plantLength_x = get_config_value('Seeding Path', 'distance between plants x')
-plantWidth_y = get_config_value('Seeding Path', 'distance between plants y')
+pos_x = get_config_value('Seeding Path', 'start_x')
+pos_y = get_config_value('Seeding Path', 'start_y')
+pos_z = get_config_value('Seeding Path', 'start_z')#later
+#X axis is length, Y axis is width
+plantLength = get_config_value('Seeding Path', 'plant_l')
+plantWidth = get_config_value('Seeding Path', 'plant_w')
+cellCountX = get_config_value('Seeding Path', 'cellX')
+cellCountY = get_config_value('Seeding Path', 'cellY')
 
 #Define functions
 def moveAbs(x, y, z):
@@ -26,19 +29,21 @@ def moveAbs(x, y, z):
         }
     )
 
+sense = 1
 for i in range(cellCountX):
-	plantX = w*i+w/2
+	plant_x = plantWidth*i+pos_x
 	if sense:
-		for j in range(cellCountY):
-			y = l*j+l/2
-			print('cords',x,y)
-			
+		for j in range(0,cellCountY+1,1):
+			plant_y = plantLength*j+pos_y
+			#print('cords',x,y)
+			moveAbs(plant_x, plant_y, pos_z)
 			#new_plant = app.add_plant(x = x,y = y)
 		sense = 0
 	else:
-		for j in range(-1*cellCountY,0):
-			y = abs(l*j+l/2)
-			print('cords',x,y)
+		for j in range(cellCountY,-1,-1):
+			plant_y = plantLength*j+pos_y
+			moveAbs(plant_x, plant_y, pos_z)
+			#print('cords',x,y)
 		sense = 1
 
 device.log('success!!', 'success', ['toast'])
