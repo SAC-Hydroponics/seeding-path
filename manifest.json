@@ -5,10 +5,10 @@
  "description": "Moves arm in a rectangular path.",
  "version": "1.0.1",
  "min_os_version_major": 6,
- "url": "https://raw.githubusercontent.com/isaacolson/move-rectangle/master/manifest.json",
- "zip": "https://github.com/isaacolson/move-rectangle/archive/master.zip",
+ "url": "https://raw.githubusercontent.com/SAC-Hydroponics/seeding-path/master/manifest.json",
+ "zip": "https://github.com/SAC-Hydroponics/seeding-path/archive/master.zip",
  "executable": "python",
- "args": ["move-rectangle-master/move_rectangle.py"],
+ "args": ["seeding-path-master/seeding_path.py"],
  "config": [
    {"name": "start_x", "label": "Start X(mm)", "value": 0 },
    {"name": "start_y", "label": "Start Y(mm)", "value": 0 },
