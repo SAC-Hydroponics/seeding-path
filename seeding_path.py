@@ -3,20 +3,25 @@
 #Import libraries
 from farmware_tools import device, get_config_value, app
 
-#so far only path of seeding starting at
-# Load inputs from Farmware page widget specified in manifest file
+#Find arm position at start of program
+start_arm_x = device.get_current_position('x')
+start_arm_y = device.get_current_position('y')
+
+# Load inputs from Farmware page widget specified in manifest file. X axis is length, Y axis is width.
 pos_x = get_config_value('Seeding Path', 'start_x')
 pos_y = get_config_value('Seeding Path', 'start_y')
-pos_z = get_config_value('Seeding Path', 'start_z')#later
-#X axis is length, Y axis is width
+pos_z = get_config_value('Seeding Path', 'start_z')
 plantLength = get_config_value('Seeding Path', 'plant_l')
 plantWidth = get_config_value('Seeding Path', 'plant_w')
 cellCountX = get_config_value('Seeding Path', 'cellX')
 cellCountY = get_config_value('Seeding Path', 'cellY')
 
+safeZ = -200
+
+
 #Define functions
 def moveAbs(x, y, z):
-    device.log('Moving to ' + str(x) + ', ' + str(y) + ', ' + str(z), 'success', ['toast'])
+    #device.log('Moving to ' + str(x) + ', ' + str(y) + ', ' + str(z), 'success', ['toast'])
     device.move_absolute(
         {
             'kind': 'coordinate',
@@ -28,6 +33,12 @@ def moveAbs(x, y, z):
             'args': {'x': 0, 'y': 0, 'z': 0}
         }
     )
+
+#Rertract to safe Z and move to first hole
+moveAbs(start_arm_x, start_arm_y, safeZ)
+moveAbs(pos_x, pos_y, safeZ)
+moveAbs(pos_x, pos_y, pos_z)
+
 
 sense = 1
 for i in range(cellCountX):
