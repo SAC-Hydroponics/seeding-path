@@ -19,7 +19,7 @@ cellCountY = get_config_value('Seeding Path', 'cellY')
 
 #Define additional varialbes
 safeZ = -200
-plantingRetract = 10
+plantingRetract = 5
 seedToolX = 1330
 seedToolY = 136
 seedToolZ = -325
