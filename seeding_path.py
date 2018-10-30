@@ -17,8 +17,13 @@ plantWidth = get_config_value('Seeding Path', 'plant_w')
 cellCountX = get_config_value('Seeding Path', 'cellX')
 cellCountY = get_config_value('Seeding Path', 'cellY')
 
+#Define additional varialbes
 safeZ = -200
 plantingRetract = 10
+seedToolX = 1330
+seedToolY = 136
+seedToolZ = -325
+toolExtractX = 1240
 
 
 #Define functions
@@ -36,13 +41,19 @@ def moveAbs(x, y, z):
         }
     )
 
-#Rertract to safe Z and move to first hole
+#If needed rertract to safe Z, and then pick up seed tool
 if start_arm_z > safeZ:
-	moveAbs(pos_x, pos_y, start_arm_z)
+	moveAbs(seedToolX, seedToolY, start_arm_z)
+	moveAbs(seedToolX, seedToolY, seedToolZ)
+	moveAbs(toolExtractX, seedToolY, seedToolZ)
+	moveAbs(pos_x, pos_y, seedToolZ)
 	moveAbs(pos_x, pos_y, pos_z)
 else:
 	moveAbs(start_arm_x, start_arm_y, safeZ)
-	moveAbs(pos_x, pos_y, safeZ)
+	moveAbs(seedToolX, seedToolY, safeZ)
+	moveAbs(seedToolX, seedToolY, seedToolZ)
+	moveAbs(toolExtractX, seedToolY, seedToolZ)
+	moveAbs(pos_x, pos_y, seedToolZ)
 	moveAbs(pos_x, pos_y, pos_z)
 
 #Move from hole to hole
