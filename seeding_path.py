@@ -82,6 +82,13 @@ moveAbs(plant_x, plant_y, seedToolZ)
 moveAbs(plant_x, seedToolY, seedToolZ)
 moveAbs(seedToolX, seedToolY, seedToolZ)
 
+#Seperate seed tool from arm.
+moveAbs(seedToolX, seedToolY, seedToolZ+60)
+
+#Move to arm storage position.
+moveAbs(seedToolX, 300, safeZ)
+
+
 device.log('success!!', 'success', ['toast'])
 
 if __name__ == '__main__':
