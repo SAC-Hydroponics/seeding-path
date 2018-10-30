@@ -2,7 +2,7 @@
  "package": "Seeding Path",
  "language": "python",
  "author": "SAC Hydroponics",
- "description": "Moves arm in a rectangular path.",
+ "description": "Moves FarmBot arm to deposit seeds in a grid pattern using absolute coordinates.",
  "version": "1.0.1",
  "min_os_version_major": 6,
  "url": "https://raw.githubusercontent.com/SAC-Hydroponics/seeding-path/master/manifest.json",
