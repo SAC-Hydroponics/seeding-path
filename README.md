@@ -1,5 +1,5 @@
 # Seeding Path Farmware
-Moves FarmBot arm to deposit seeds in a grid pattern absolute coordinates.
+Moves FarmBot arm to deposit seeds in a grid pattern using absolute coordinates.
 
 ## Install
 [Farmware page](https://my.farmbot.io/app/farmware) install URL:
