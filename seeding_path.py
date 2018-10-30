@@ -47,6 +47,7 @@ if start_arm_z > safeZ:
 	moveAbs(seedToolX, seedToolY, start_arm_z)
 	moveAbs(seedToolX, seedToolY, seedToolZ)
 	moveAbs(toolExtractX, seedToolY, seedToolZ)
+	moveAbs(pos_x, seedToolY, seedToolZ)
 	moveAbs(pos_x, pos_y, seedToolZ)
 	moveAbs(pos_x, pos_y, pos_z)
 else:
@@ -54,6 +55,7 @@ else:
 	moveAbs(seedToolX, seedToolY, safeZ)
 	moveAbs(seedToolX, seedToolY, seedToolZ)
 	moveAbs(toolExtractX, seedToolY, seedToolZ)
+	moveAbs(pos_x, seedToolY, seedToolZ)
 	moveAbs(pos_x, pos_y, seedToolZ)
 	moveAbs(pos_x, pos_y, pos_z)
 
