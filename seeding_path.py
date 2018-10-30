@@ -8,7 +8,7 @@ start_arm_x = device.get_current_position('x')
 start_arm_y = device.get_current_position('y')
 start_arm_z = device.get_current_position('z')
 
-# Load inputs from Farmware page widget specified in manifest file. X axis is length, Y axis is width.
+#Load inputs from Farmware page widget specified in manifest file. X axis is length, Y axis is width.
 pos_x = get_config_value('Seeding Path', 'start_x')
 pos_y = get_config_value('Seeding Path', 'start_y')
 pos_z = get_config_value('Seeding Path', 'start_z')
@@ -24,7 +24,8 @@ seedToolX = 1330
 seedToolY = 136
 seedToolZ = -325
 toolExtractX = 1240
-
+plant_x = 0
+plant_y = 0
 
 #Define functions
 def moveAbs(x, y, z):
@@ -41,7 +42,7 @@ def moveAbs(x, y, z):
         }
     )
 
-#If needed rertract to safe Z, and then pick up seed tool
+#If needed rertract to safe Z, then pick up seed tool.
 if start_arm_z > safeZ:
 	moveAbs(seedToolX, seedToolY, start_arm_z)
 	moveAbs(seedToolX, seedToolY, seedToolZ)
@@ -56,7 +57,7 @@ else:
 	moveAbs(pos_x, pos_y, seedToolZ)
 	moveAbs(pos_x, pos_y, pos_z)
 
-#Move from hole to hole
+#Deposit seeds by moving from hole to hole.
 sense = 1
 for i in range(cellCountX):
 	plant_x = plantWidth*i+pos_x
@@ -75,6 +76,11 @@ for i in range(cellCountX):
 			moveAbs(plant_x, plant_y, pos_z)
 			#print('cords',x,y)
 		sense = 1
+		
+#Return seed tool to toolbay.
+moveAbs(plant_x, plant_y, seedToolZ)
+moveAbs(plant_x, seedToolY, seedToolZ)
+moveAbs(seedToolX, seedToolY, seedToolZ)
 
 device.log('success!!', 'success', ['toast'])
 
