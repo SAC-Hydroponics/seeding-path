@@ -57,7 +57,7 @@ else:
 	moveAbs(toolExtractX, seedToolY, seedToolZ)
 	moveAbs(pos_x, seedToolY, seedToolZ)
 	moveAbs(pos_x, pos_y, seedToolZ)
-	moveAbs(pos_x, pos_y, pos_z)
+	#moveAbs(pos_x, pos_y, pos_z)
 
 #Deposit seeds by moving from hole to hole.
 sense = 1
@@ -66,17 +66,16 @@ for i in range(cellCountX):
 	if sense:
 		for j in range(0,cellCountY+1,1):
 			plant_y = plantLength*j+pos_y
-			#print('cords',x,y)
 			moveAbs(plant_x, plant_y, pos_z+plantingRetract)
 			moveAbs(plant_x, plant_y, pos_z)
-			#new_plant = app.add_plant(x = x,y = y)
 			moveAbs(plant_x, plant_y, pos_z+plantingRetract)
 		sense = 0
 	else:
 		for j in range(cellCountY,-1,-1):
 			plant_y = plantLength*j+pos_y
+			moveAbs(plant_x, plant_y, pos_z+plantingRetract)
 			moveAbs(plant_x, plant_y, pos_z)
-			#print('cords',x,y)
+			moveAbs(plant_x, plant_y, pos_z+plantingRetract)
 		sense = 1
 		
 #Return seed tool to toolbay.
